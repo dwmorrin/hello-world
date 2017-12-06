@@ -1,3 +1,6 @@
+/*
+hello.c asks for the user's name and then echoes the name with "Hello, <name>"
+*/
 #include <stdio.h>
 #include <stdlib.h>
 
