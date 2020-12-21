@@ -1,42 +1,23 @@
 /*
-hello.c asks for the user's name and then echoes the name with "Hello, <name>"
+hello.c asks for the user's name and then echoes the name with "Hello, <name>".
+Input is expected to be typed into a terminal and end with a newline.
 */
 #include <stdio.h>
 #include <stdlib.h>
 
+#define prompt "What's your name? "
+
 int main()
 {
-    int index = 0;
-    size_t bufsize = 32;
-    char *buffer = malloc(bufsize * sizeof *buffer);    
-    ssize_t nbytes = 0;
-    /* Check that buffer is OK */
-    if (buffer == NULL) {
-        puts("Error allocating memory");
-        abort();
-    }
+    size_t bufsize = 0;
+    char *buffer = NULL;
+    ssize_t nread = 0;
     
-    /* Get user's name  */
-    do {
-        if (nbytes == 1) { /* implies EOF was entered */
-            puts("");
-            puts("EOF? Use ctrl-c to abort.");
-        }
-        if (buffer[0] == '\n')
-            puts("You don't have a name? Try again.");
-        printf("What is your name? ");
-    } while((nbytes = getline(&buffer, &bufsize, stdin) == -1)
-        || buffer[0] == '\n');
-    
-    /* Remove newline from buffer */
-    while(buffer[++index] != '\n');
-    buffer[index] = '\0';
-    
-    /* Display message to the user */
+    do
+    {
+        puts("\n" prompt);
+        nread = getline(&buffer, &bufsize, stdin);
+    } while (nread < 2);
     printf("Hello, %s\n", buffer);
-    
-    /* Clean up */
-    free(buffer);
-    
-    return 0;
+    exit(EXIT_SUCCESS);
 }
