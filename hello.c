@@ -19,5 +19,7 @@ int main()
         nread = getline(&buffer, &bufsize, stdin);
     } while (nread < 2);
     printf("Hello, %s\n", buffer);
+    
+    free(buffer);
     exit(EXIT_SUCCESS);
 }
