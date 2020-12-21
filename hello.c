@@ -5,7 +5,7 @@ Input is expected to be typed into a terminal and end with a newline.
 #include <stdio.h>
 #include <stdlib.h>
 
-#define prompt "What's your name? "
+#define prompt "\nWhat's your name?\n>"
 
 int main()
 {
@@ -15,7 +15,7 @@ int main()
     
     do
     {
-        puts("\n" prompt);
+        printf(prompt);
         nread = getline(&buffer, &bufsize, stdin);
     } while (nread < 2);
     printf("Hello, %s\n", buffer);
